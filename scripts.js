@@ -1,5 +1,13 @@
-document.getElementById('colorButton').addEventListener('click', function() {
-    const colors = ['#FF5733', '#33FF57', '#3357FF', '#F333FF', '#FF33A6', '#33FFF3', '#b0ffb1'];
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    document.body.style.backgroundColor = randomColor;
+document.getElementById('explodeButton').addEventListener('click', function() {
+    const container = document.querySelector('.container');
+    for (let i = 0; i < 5; i++) {  // 5 adet roket oluşturuyoruz
+        const rocket = document.createElement('div');
+        rocket.classList.add('rocket');
+        rocket.style.left = `${Math.random() * (window.innerWidth - 50)}px`;  // Rocket genişliğini hesaba katıyoruz
+        rocket.style.top = `${Math.random() * (window.innerHeight - 100)}px`;  // Rocket yüksekliğini hesaba katıyoruz
+        container.appendChild(rocket);
+        setTimeout(() => {
+            rocket.remove();
+        }, 1000);
+    }
 });
