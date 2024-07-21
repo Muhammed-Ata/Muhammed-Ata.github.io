@@ -1,40 +1,54 @@
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f0f0f0;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    margin: 20px;
+    color: #333;
 }
 
-#game-board {
-    display: grid;
-    grid-template-columns: repeat(10, 30px);
-    grid-template-rows: repeat(10, 30px);
-    gap: 2px;
-    margin: 0 auto;
-    width: max-content;
+.prayer-times {
+    list-style-type: none;
+    padding: 0;
 }
 
-.cell {
-    width: 30px;
-    height: 30px;
-    background-color: #ccc;
-    border: 1px solid #999;
-    box-sizing: border-box;
+.prayer-times li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.prayer-times li:last-child {
+    border-bottom: none;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius: 5px;
+    margin: 10px 0;
 }
 
-.cell.revealed {
-    background-color: #eee;
+button:hover {
+    background-color: #2980b9;
 }
 
-.cell.bomb {
-    background-color: red;
+.next-prayer {
+    font-weight: bold;
+    color: #e74c3c;
 }
