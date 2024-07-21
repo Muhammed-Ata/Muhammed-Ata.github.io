@@ -1,48 +1,14 @@
-body, html {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #282c34;
-    overflow: hidden;
-}
-
-.container {
-    position: relative;
-    text-align: center;
-}
-
 button {
-    padding: 20px;
-    font-size: 20px;
-    background-color: #61dafb;
+    background-color: #3498db;
+    color: #fff;
     border: none;
-    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
     cursor: pointer;
-    transition: transform 0.2s;
+    border-radius: 5px;
+    margin: 10px 0;
 }
 
 button:hover {
-    transform: scale(1.1);
-}
-
-@keyframes rocketExplosion {
-    0% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-200px) scale(0);
-    }
-}
-
-.rocket {
-    position: absolute;
-    width: 50px;
-    height: 100px;
-    background: url('rocket.png') no-repeat center center;
-    background-size: contain;
-    animation: rocketExplosion 1s ease-out forwards;
+    background-color: #2980b9;
 }
