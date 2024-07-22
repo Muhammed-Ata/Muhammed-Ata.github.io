@@ -9,11 +9,12 @@ async function getPrayerTimes() {
     let nextPrayerTime = null;
     let nextPrayerName = "";
 
-    for (const [index, time] of Object.entries(times)) {
+    for (let i = 0; i < prayerNames.length; i++) {
+        const time = times[i];
         const prayerTime = new Date(now.toDateString() + ' ' + time);
         if (prayerTime > now) {
             nextPrayerTime = prayerTime;
-            nextPrayerName = prayerNames[index];
+            nextPrayerName = prayerNames[i];
             break;
         }
     }

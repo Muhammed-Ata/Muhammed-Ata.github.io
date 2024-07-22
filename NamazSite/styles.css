@@ -6,6 +6,8 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
+    background-color: black;
+    color: white;
 }
 #remaining-time {
     font-size: 2em;
@@ -15,4 +17,7 @@ button {
     padding: 10px 20px;
     font-size: 1em;
     cursor: pointer;
+    background-color: white;
+    border: none;
+    color: black;
 }
