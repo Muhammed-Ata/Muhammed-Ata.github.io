@@ -3,21 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Namaz Vakitleri</title>
+    <title>Ezan Vakti</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Namaz Vakitleri</h1>
-        <p id="date"></p>
-        <ul id="prayer-times" class="prayer-times"></ul>
-        <button id="show-next-prayer-time">Bir Sonraki Ezan Vakti Süresini Göster</button>
-        <p id="next-prayer" class="next-prayer"></p>
-    </div>
-    <div class="container">
-        <h3>Muhammed Ata Altaş tarafından yapılmıştır</h3>
-    </div>
-    
+    <div id="remaining-time">Ezana kalan süre</div>
+    <button onclick="getPrayerTimes()">Süreyi Güncelle</button>
     <script src="script.js"></script>
 </body>
 </html>
