@@ -1,62 +1,86 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const boardSize = 10;
-    const bombCount = 10;
-    const board = document.getElementById("game-board");
-    let cells = [];
-    let bombs = [];
+// Tarih bilgilerini alma
+const todayDate = new Date().toISOString().split('T')[0];
 
-    // Create game board
-    for (let i = 0; i < boardSize * boardSize; i++) {
-        const cell = document.createElement("div");
-        cell.classList.add("cell");
-        cell.dataset.index = i;
-        cell.addEventListener("click", () => revealCell(cell));
-        board.appendChild(cell);
-        cells.push(cell);
-    }
-
-    // Place bombs randomly
-    while (bombs.length < bombCount) {
-        const index = Math.floor(Math.random() * cells.length);
-        if (!bombs.includes(index)) {
-            bombs.push(index);
-            cells[index].classList.add("bomb");
-        }
-    }
-
-    // Reveal cell
-    function revealCell(cell) {
-        if (cell.classList.contains("revealed")) return;
-        cell.classList.add("revealed");
-
-        if (cell.classList.contains("bomb")) {
-            alert("Oyun Bitti! Mayın bulundu.");
-            cells.forEach(c => c.classList.add("revealed"));
-        } else {
-            const index = parseInt(cell.dataset.index);
-            const adjacentCells = getAdjacentCells(index);
-            const bombCount = adjacentCells.filter(i => cells[i].classList.contains("bomb")).length;
-            cell.textContent = bombCount || "";
-        }
-    }
-
-    // Get adjacent cells
-    function getAdjacentCells(index) {
-        const adjacent = [];
-        const row = Math.floor(index / boardSize);
-        const col = index % boardSize;
-
-        for (let r = -1; r <= 1; r++) {
-            for (let c = -1; c <= 1; c++) {
-                if (r === 0 && c === 0) continue;
-                const newRow = row + r;
-                const newCol = col + c;
-                if (newRow >= 0 && newRow < boardSize && newCol >= 0 && newCol < boardSize) {
-                    adjacent.push(newRow * boardSize + newCol);
-                }
-            }
-        }
-
-        return adjacent;
-    }
+// API URL ve parametreler
+const url = 'https://vakit.vercel.app/api/timesFromCoordinates';
+const params = new URLSearchParams({
+    lat: 36.58718,
+    lng: 36.17347,
+    date: todayDate,
+    days: 3,
+    timezoneOffset: 180,
+    calculationMethod: 'Turkey'
 });
+
+// Namaz vakitlerinin isimleri
+const prayerNames = ['İmsak', 'Sabah', 'Öğle', 'İkindi', 'Akşam', 'Yatsı'];
+
+// API isteği yapma
+function fetchPrayerTimes() {
+    fetch(`${url}?${params}`)
+        .then(response => response.json())
+        .then(data => {
+            const todayTimes = data.times[todayDate];
+
+            if (todayTimes) {
+                // Tarihi ve namaz vakitlerini yazdırma
+                const todayDateObj = new Date(todayDate);
+                const formattedTodayDate = todayDateObj.toLocaleDateString('tr-TR', { day: '2-digit', month: 'long', year: 'numeric' });
+
+                document.getElementById('date').textContent = `Tarih: ${formattedTodayDate}`;
+
+                const prayerTimesList = document.getElementById('prayer-times');
+                prayerTimesList.innerHTML = '';
+                prayerNames.forEach((prayer, index) => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${prayer}: ${todayTimes[index] || 'Bilgi Yok'}`;
+                    prayerTimesList.appendChild(listItem);
+                });
+
+                // Bir sonraki ezan vakti için kalan süreyi hesaplama
+                const getNextPrayerTime = () => {
+                    const now = new Date();
+                    let nextPrayerTime = null;
+
+                    prayerNames.forEach((prayer, index) => {
+                        if (todayTimes[index]) {
+                            const [hours, minutes] = todayTimes[index].split(':').map(Number);
+                            const prayerDateTime = new Date(todayDateObj.getFullYear(), todayDateObj.getMonth(), todayDateObj.getDate(), hours, minutes);
+
+                            if (prayerDateTime > now) {
+                                nextPrayerTime = prayerDateTime;
+                                return; // Dönüş, döngüden çıkmak için
+                            }
+                        }
+                    });
+
+                    return nextPrayerTime;
+                };
+
+                const nextPrayerElement = document.getElementById('next-prayer');
+                const nextPrayerButton = document.getElementById('show-next-prayer-time');
+
+                nextPrayerButton.addEventListener('click', () => {
+                    const nextPrayerTime = getNextPrayerTime();
+                    if (nextPrayerTime) {
+                        const timeUntilNextPrayer = new Date(nextPrayerTime - new Date());
+                        nextPrayerElement.textContent = `Bir sonraki ezana kalan süre: ${timeUntilNextPrayer.getUTCHours()} saat ${timeUntilNextPrayer.getUTCMinutes()} dakika ${timeUntilNextPrayer.getUTCSeconds()} saniye`;
+                    } else {
+                        nextPrayerElement.textContent = "Bugün için kalan ezan vakti yok.";
+                    }
+                });
+
+                // Otomatik güncelleme
+                nextPrayerButton.click();
+            } else {
+                document.getElementById('date').textContent = "Bugünün namaz vakitleri bulunamadı.";
+            }
+        })
+        .catch(error => {
+            console.error("Bir hata oluştu:", error);
+            document.getElementById('date').textContent = "Bir hata oluştu, namaz vakitleri alınamadı.";
+        });
+}
+
+// Sayfa yüklendiğinde namaz vakitlerini al
+document.addEventListener('DOMContentLoaded', fetchPrayerTimes);
