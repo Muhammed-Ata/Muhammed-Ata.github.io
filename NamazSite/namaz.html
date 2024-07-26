@@ -9,15 +9,17 @@
 <body>
     <div class="container">
         <h1>Namaz Vakitleri</h1>
-        <p id="date"></p>
-        <ul id="prayer-times" class="prayer-times"></ul>
-        <button id="show-next-prayer-time">Bir Sonraki Ezan Vakti Süresini Göster</button>
-        <p id="next-prayer" class="next-prayer"></p>
+        <div id="vakitler">
+            <p id="0">İmsak: <span class="time"></span></p>
+            <p id="1">Sabah: <span class="time"></span></p>
+            <p id="2">Öğle: <span class="time"></span></p>
+            <p id="3">İkindi: <span class="time"></span></p>
+            <p id="4">Akşam: <span class="time"></span></p>
+            <p id="5">Yatsı: <span class="time"></span></p>
+        </div>
+        <button id="updateButton">Namaza Kalan Süreyi Göster</button>
+        <p id="remainingTime"></p>
     </div>
-    <div class="container">
-        <h3>Muhammed Ata Altaş tarafından yapılmıştır</h3>
-    </div>
-    
     <script src="script.js"></script>
 </body>
 </html>

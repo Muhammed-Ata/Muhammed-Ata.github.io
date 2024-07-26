@@ -1,73 +1,43 @@
-// Tarih bilgilerini alma
-const todayDate = new Date().toISOString().split('T')[0];
-
-// API URL ve parametreler
-const url = 'https://vakit.vercel.app/api/timesFromCoordinates';
-const params = new URLSearchParams({
-    lat: 36.58718,
-    lng: 36.17347,
-    date: todayDate,
-    days: 3,
-    timezoneOffset: 180,
-    calculationMethod: 'Turkey'
-});
-
-// API isteği yapma
-fetch(`${url}?${params}`)
-    .then(response => response.json())
-    .then(data => {
-        const todayTimes = data.times[todayDate];
-
-        if (todayTimes) {
-            // Tarihi ve namaz vakitlerini yazdırma
-            const todayDateObj = new Date(todayDate);
-            const formattedTodayDate = todayDateObj.toLocaleDateString('tr-TR', { day: '2-digit', month: 'long', year: 'numeric' });
-
-            document.getElementById('date').textContent = `Tarih: ${formattedTodayDate}`;
-
-            const prayerTimesList = document.getElementById('prayer-times');
-            prayerTimesList.innerHTML = '';
-            Object.keys(todayTimes).forEach(prayer => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${prayer}: ${todayTimes[prayer]}`;
-                prayerTimesList.appendChild(listItem);
+document.addEventListener("DOMContentLoaded", function () {
+    const vakitler = ["İmsak", "Sabah", "Öğle", "İkindi", "Akşam", "Yatsı"];
+    const vakitlerElement = document.getElementById("vakitler");
+    const updateButton = document.getElementById("updateButton");
+    const remainingTimeElement = document.getElementById("remainingTime");
+    
+    const API_URL = 'https://vakit.vercel.app/api/timesFromCoordinates?lat=36.58718&lng=36.17347&date=2024-7-22&days=3&timezoneOffset=180&calculationMethod=Turkey';
+    
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+            const times = data.items[0].times;
+            vakitler.forEach((vakit, index) => {
+                document.getElementById(index.toString()).querySelector(".time").innerText = times[vakit.toLowerCase()];
             });
+        })
+        .catch(error => console.error("Error fetching data:", error));
+    
+    updateButton.addEventListener("click", function () {
+        const now = new Date();
+        let nextTime, nextVakit;
 
-            // Bir sonraki ezan vakti için kalan süreyi hesaplama
-            const getNextPrayerTime = () => {
-                const now = new Date();
-                let nextPrayerTime = null;
+        vakitler.forEach((vakit, index) => {
+            const timeString = document.getElementById(index.toString()).querySelector(".time").innerText;
+            const vakitTime = new Date(`${now.toISOString().split("T")[0]}T${timeString}:00+03:00`);
 
-                Object.keys(todayTimes).some(prayer => {
-                    const [hours, minutes] = todayTimes[prayer].split(':').map(Number);
-                    const prayerDateTime = new Date(todayDateObj.getFullYear(), todayDateObj.getMonth(), todayDateObj.getDate(), hours, minutes);
+            if (vakitTime > now && !nextTime) {
+                nextTime = vakitTime;
+                nextVakit = vakit;
+            }
+        });
 
-                    if (prayerDateTime > now) {
-                        nextPrayerTime = prayerDateTime;
-                        return true; // 'some' döngüsünden çıkmak için
-                    }
-                    return false;
-                });
-
-                return nextPrayerTime;
-            };
-
-            document.getElementById('show-next-prayer-time').addEventListener('click', () => {
-                const nextPrayerTime = getNextPrayerTime();
-                const nextPrayerElement = document.getElementById('next-prayer');
-                if (nextPrayerTime) {
-                    const timeUntilNextPrayer = new Date(nextPrayerTime - new Date());
-                    nextPrayerElement.textContent = `Bir sonraki ezana kalan süre: ${timeUntilNextPrayer.getUTCHours()} saat ${timeUntilNextPrayer.getUTCMinutes()} dakika ${timeUntilNextPrayer.getUTCSeconds()} saniye`;
-                } else {
-                    nextPrayerElement.textContent = "Bugün için kalan ezan vakti yok.";
-                }
-            });
-
+        if (nextTime) {
+            const remainingTime = Math.floor((nextTime - now) / 1000);
+            const hours = Math.floor(remainingTime / 3600);
+            const minutes = Math.floor((remainingTime % 3600) / 60);
+            const seconds = remainingTime % 60;
+            remainingTimeElement.innerText = `${nextVakit} namazına kalan süre: ${hours} saat, ${minutes} dakika, ${seconds} saniye`;
         } else {
-            document.getElementById('date').textContent = "Bugünün namaz vakitleri bulunamadı.";
+            remainingTimeElement.innerText = "Günlük tüm namaz vakitleri geçti.";
         }
-    })
-    .catch(error => {
-        console.error("Bir hata oluştu:", error);
-        document.getElementById('date').textContent = "Bir hata oluştu, namaz vakitleri alınamadı.";
     });
+});

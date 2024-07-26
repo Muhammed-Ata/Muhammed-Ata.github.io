@@ -1,54 +1,37 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f0f0f0;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
-    text-align: center;
 }
 
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
     background-color: #fff;
+    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 h1 {
-    color: #333;
+    margin-bottom: 20px;
 }
 
-.prayer-times {
-    list-style-type: none;
-    padding: 0;
+#vakitler p {
+    margin: 5px 0;
 }
 
-.prayer-times li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-.prayer-times li:last-child {
-    border-bottom: none;
-}
-
-button {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
+#updateButton {
     padding: 10px 20px;
-    font-size: 16px;
+    margin-top: 20px;
     cursor: pointer;
-    border-radius: 5px;
-    margin: 10px 0;
 }
 
-button:hover {
-    background-color: #2980b9;
-}
-
-.next-prayer {
-    font-weight: bold;
-    color: #e74c3c;
+#remainingTime {
+    margin-top: 20px;
+    font-size: 1.2em;
 }
