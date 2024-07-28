@@ -1,37 +1,23 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 100vh;
     margin: 0;
+    background-color: black;
+    color: white;
 }
-
-.container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+#remaining-time {
+    font-size: 2em;
+    margin: 20px;
 }
-
-h1 {
-    margin-bottom: 20px;
-}
-
-#vakitler p {
-    margin: 5px 0;
-}
-
-#updateButton {
+button {
     padding: 10px 20px;
-    margin-top: 20px;
+    font-size: 1em;
     cursor: pointer;
-}
-
-#remainingTime {
-    margin-top: 20px;
-    font-size: 1.2em;
+    background-color: white;
+    border: none;
+    color: black;
 }

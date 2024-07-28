@@ -3,23 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Namaz Vakitleri</title>
+    <title>Ezan Vakti</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Namaz Vakitleri</h1>
-        <div id="vakitler">
-            <p id="0">İmsak: <span class="time"></span></p>
-            <p id="1">Sabah: <span class="time"></span></p>
-            <p id="2">Öğle: <span class="time"></span></p>
-            <p id="3">İkindi: <span class="time"></span></p>
-            <p id="4">Akşam: <span class="time"></span></p>
-            <p id="5">Yatsı: <span class="time"></span></p>
-        </div>
-        <button id="updateButton">Namaza Kalan Süreyi Göster</button>
-        <p id="remainingTime"></p>
-    </div>
+    <div id="remaining-time">Ezana kalan süre</div>
+    <button onclick="getPrayerTimes()">Süreyi Güncelle</button>
     <script src="script.js"></script>
 </body>
 </html>
