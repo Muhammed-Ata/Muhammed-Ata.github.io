@@ -1,8 +1,11 @@
-document.getElementById('showVideo').addEventListener('click', function() {
-    var videoContainer = document.getElementById('videoContainer');
-    var video = document.getElementById('video');
+document.getElementById('showVideoBtn').addEventListener('click', function() {
+    const videoContainer = document.getElementById('videoContainer');
+    const videoFrame = document.getElementById('videoFrame');
     
-    // YouTube video URL'sini buraya ekleyin. Aşağıdaki URL'yi rick roll video URL'si ile değiştirebilirsiniz.
-    video.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ'; // Rick Roll video URL'si
+    // Video URL'nizi buraya ekleyin
+    const videoURL = 'https://www.youtube.com/embed/dQw4w9WgXcQ';
+    
+    // iframe src'ini ayarlayın ve container'ı gösterin
+    videoFrame.src = videoURL;
     videoContainer.classList.remove('hidden');
 });

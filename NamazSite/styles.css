@@ -1,7 +1,10 @@
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
 button {
@@ -10,10 +13,16 @@ button {
     cursor: pointer;
 }
 
-.hidden {
-    display: none;
-}
-
 #videoContainer {
     margin-top: 20px;
+    text-align: center;
+}
+
+#videoFrame {
+    width: 560px;
+    height: 315px;
+}
+
+.hidden {
+    display: none;
 }
