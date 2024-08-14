@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ezan Vakti</title>
+    <title>Video Embed</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="remaining-time">Ezana kalan süre</div>
-    <button onclick="getPrayerTimes()">Süreyi Güncelle</button>
+    <button id="showVideo">Videoyu Göster</button>
+    <div id="videoContainer" class="hidden">
+        <iframe id="video" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
