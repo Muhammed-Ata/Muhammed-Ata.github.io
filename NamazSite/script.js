@@ -1,37 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const board = document.getElementById('chessboard');
+    const playButton = document.getElementById('playButton');
+    const videoContainer = document.getElementById('videoContainer');
+    const videoPlayer = document.getElementById('videoPlayer');
 
-    // Tahtayı oluştur
-    for (let i = 0; i < 64; i++) {
-        const square = document.createElement('div');
-        square.classList.add('square');
-        board.appendChild(square);
-    }
-
-    const pieces = [
-        '♜', '♞', '♝', '♛', '♚', '♝', '♞', '♜',
-        '♟', '♟', '♟', '♟', '♟', '♟', '♟', '♟',
-        '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '',
-        '♙', '♙', '♙', '♙', '♙', '♙', '♙', '♙',
-        '♖', '♘', '♗', '♕', '♔', '♗', '♘', '♖'
-    ];
-
-    // Taşları yerleştir
-    const squares = document.querySelectorAll('.square');
-    squares.forEach((square, index) => {
-        if (pieces[index]) {
-            const piece = document.createElement('div');
-            piece.classList.add('piece');
-            piece.textContent = pieces[index];
-            if (index < 16) {
-                piece.classList.add('black');
-            } else if (index >= 48) {
-                piece.classList.add('white');
-            }
-            square.appendChild(piece);
-        }
+    playButton.addEventListener('click', () => {
+        // Videoyu embed linkine ayarla
+        videoPlayer.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
+        // Video konteynerini görünür yap
+        videoContainer.classList.remove('hidden');
     });
 });
