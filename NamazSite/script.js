@@ -1,18 +1,12 @@
-// script.js
-document.getElementById('playButton').addEventListener('click', function() {
-    var iframe = document.getElementById('myVideo');
-    var videoContainer = document.getElementById('video-container');
-    
-    // YouTube video URL
-    var videoUrl = "https://www.youtube.com/embed/AuKR2fQbMB";
+document.addEventListener('DOMContentLoaded', () => {
+    const playButton = document.getElementById('playButton');
+    const videoContainer = document.getElementById('videoContainer');
+    const videoPlayer = document.getElementById('videoPlayer');
 
-    // Show the video container and set the src of the iframe
-    videoContainer.style.display = 'block';
-    iframe.src = videoUrl;
-    
-    // Change button text to something else
-    this.textContent = 'Videoyu Duraklat';
-    
-    // Optional: Disable button after playing the video
-    this.disabled = true;
+    playButton.addEventListener('click', () => {
+        // Videoyu embed linkine ayarla
+        videoPlayer.src = 'https://www.youtube.com/watch?v=AuKR2fQbMBkautoplay.';
+        // Video konteynerini görünür yap
+        videoContainer.classList.remove('hidden');
+    });
 });
