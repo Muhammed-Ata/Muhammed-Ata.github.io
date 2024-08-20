@@ -6,7 +6,24 @@
     <title>Video Oynatıcı</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body><!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Video Gösterme</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <button id="myButton">Sakın Basma</button>
+        <div id="videoContainer" style="display: none;">
+            <iframe id="video" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    
+        <script src="script.js"></script>
+    </body>
+    </html>
+    
     <button id="playButton">Videoyu Oynat</button>
     <div id="videoContainer" class="hidden">
         <iframe id="videoPlayer" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

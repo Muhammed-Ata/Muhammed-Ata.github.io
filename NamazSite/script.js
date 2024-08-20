@@ -1,12 +1,10 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const playButton = document.getElementById('playButton');
-    const videoContainer = document.getElementById('videoContainer');
-    const videoPlayer = document.getElementById('videoPlayer');
+document.getElementById('myButton').addEventListener('click', function() {
+    var videoContainer = document.getElementById('videoContainer');
+    var video = document.getElementById('video');
 
-    playButton.addEventListener('click', () => {
-        // Videoyu embed linkine ayarla
-        videoPlayer.src = 'https://www.youtube.com/watch?v=AuKR2fQbMBkautoplay1';
-        // Video konteynerini görünür yap
-        videoContainer.classList.remove('hidden');
-    });
+    // YouTube video URL
+    video.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ';
+
+    // Show the video container
+    videoContainer.style.display = 'block';
 });
