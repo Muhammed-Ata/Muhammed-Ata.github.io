@@ -3,13 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parlaklık Artırma</title>
+    <title>Ezan Vakitleri</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <button id="brightnessButton">Parlaklığı Artır</button>
+        <h1>Defne, Hatay Ezan Vakitleri</h1>
+        <div class="times">
+            <div class="time-item">
+                <span>İmsak:</span>
+                <span id="imsak">--:--</span>
+            </div>
+            <div class="time-item">
+                <span>Güneş:</span>
+                <span id="gunes">--:--</span>
+            </div>
+            <div class="time-item">
+                <span>Öğle:</span>
+                <span id="ogle">--:--</span>
+            </div>
+            <div class="time-item">
+                <span>İkindi:</span>
+                <span id="ikindi">--:--</span>
+            </div>
+            <div class="time-item">
+                <span>Akşam:</span>
+                <span id="aksam">--:--</span>
+            </div>
+            <div class="time-item">
+                <span>Yatsı:</span>
+                <span id="yatsi">--:--</span>
+            </div>
+        </div>
+        <div class="remaining-time">
+            <h2>Bir Sonraki Ezan'a Kalan Süre:</h2>
+            <p id="remaining">--:--:--</p>
+        </div>
     </div>
-    <script src="script.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
