@@ -1,3 +1,5 @@
+document.getElementById('fetchButton').addEventListener('click', getPrayerTimes);
+
 const apiUrl = "https://api.aladhan.com/v1/timings?latitude=36.188333&longitude=36.147778&method=2";
 
 async function getPrayerTimes() {
@@ -42,5 +44,3 @@ function updateRemainingTime(times) {
         }
     }
 }
-
-getPrayerTimes();
