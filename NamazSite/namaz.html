@@ -3,44 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ezan Vakitleri</title>
+    <title>Video Oynatıcı</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Defne, Hatay Ezan Vakitleri</h1>
-        <button id="fetchButton">Vakitleri Getir</button>
-        <div class="times">
-            <div class="time-item">
-                <span>İmsak:</span>
-                <span id="imsak">--:--</span>
-            </div>
-            <div class="time-item">
-                <span>Güneş:</span>
-                <span id="gunes">--:--</span>
-            </div>
-            <div class="time-item">
-                <span>Öğle:</span>
-                <span id="ogle">--:--</span>
-            </div>
-            <div class="time-item">
-                <span>İkindi:</span>
-                <span id="ikindi">--:--</span>
-            </div>
-            <div class="time-item">
-                <span>Akşam:</span>
-                <span id="aksam">--:--</span>
-            </div>
-            <div class="time-item">
-                <span>Yatsı:</span>
-                <span id="yatsi">--:--</span>
-            </div>
-        </div>
-        <div class="remaining-time">
-            <h2>Bir Sonraki Ezan'a Kalan Süre:</h2>
-            <p id="remaining">--:--:--</p>
-        </div>
+    <button id="playButton">Videoyu Oynat</button>
+
+    <div id="videoOverlay">
+        <iframe id="videoFrame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
-    <script src="app.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
