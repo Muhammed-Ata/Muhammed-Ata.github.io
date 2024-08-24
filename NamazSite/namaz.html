@@ -1,17 +1,36 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Oynatıcı</title>
+    <title>Yerel Ürün Pazarı</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <button id="playButton">bedava robux</button>
-
-    <div id="videoOverlay">
-        <iframe id="videoFrame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
+    <header>
+        <h1>Yerel Ürün Pazarı</h1>
+        <div class="cart">
+            <span>Sepet: <span id="cart-count">0</span> Ürün</span>
+        </div>
+    </header>
+    
+    <main>
+        <div class="product-list">
+            <div class="product" data-id="1">
+                <img src="urun1.jpg" alt="Ürün 1">
+                <h2>Organik Bal</h2>
+                <p>Fiyat: 50 TL</p>
+                <button class="add-to-cart">Sepete Ekle</button>
+            </div>
+            <div class="product" data-id="2">
+                <img src="urun2.jpg" alt="Ürün 2">
+                <h2>El Yapımı Sabun</h2>
+                <p>Fiyat: 20 TL</p>
+                <button class="add-to-cart">Sepete Ekle</button>
+            </div>
+            <!-- Diğer ürünler buraya eklenebilir -->
+        </div>
+    </main>
 
     <script src="script.js"></script>
 </body>

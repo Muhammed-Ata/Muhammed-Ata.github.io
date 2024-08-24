@@ -1,15 +1,14 @@
-document.getElementById('playButton').addEventListener('click', function() {
-    var videoOverlay = document.getElementById('videoOverlay');
-    var videoFrame = document.getElementById('videoFrame');
-    
-    videoFrame.src = "https://www.youtube.com/embed/aL2OrIqoGoM?autoplay=1";
-    videoOverlay.style.display = 'flex';
-});
+document.addEventListener('DOMContentLoaded', function() {
+    let cartCount = 0;
 
-document.getElementById('videoOverlay').addEventListener('click', function() {
-    var videoOverlay = document.getElementById('videoOverlay');
-    var videoFrame = document.getElementById('videoFrame');
-    
-    videoFrame.src = "";
-    videoOverlay.style.display = 'none';
+    const cartCountElement = document.getElementById('cart-count');
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            cartCount++;
+            cartCountElement.textContent = cartCount;
+            alert('Ürün sepete eklendi!');
+        });
+    });
 });
