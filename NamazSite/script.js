@@ -1,14 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-    let cartCount = 0;
-
-    const cartCountElement = document.getElementById('cart-count');
-    const addToCartButtons = document.querySelectorAll('.add-to-cart');
-
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            cartCount++;
-            cartCountElement.textContent = cartCount;
-            alert('Ürün sepete eklendi!');
-        });
-    });
-});
+document.getElementById("redirectButton").onclick = function () {
+    window.location.href = "https://www.amazon.com.tr/Yeti%C5%9Fkinler-Oyuncaklar%C4%B1-Tabancas%C4%B1-Oyuncaklar-Anksiyete/dp/B0CLRS6W3C/ref=sr_1_15?__mk_tr_TR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=ONAA797O8DTE&dib=eyJ2IjoiMSJ9.PV-fvutoE__hwBU1j6cqsHVfOAIsTsOwqdo1k_jSXvJ0lFwxSZ5F6kLevntpl3ToMaNC9wLa2AgdmfxZ_LHNI0_jikad_0RTjtP4u8Da4lKfsvdRfR_o3qKilqx91VIpu0Dwm8-D_syeSMZ7Y1gctASk69xaHwE9Bjj47-piTAS9Ok6gAadCq5mJMHatAU5oIAL1N4mqL9zXQIXYFCebNLyvywmwdk8JXUSwAPx5KSNz6E9HYZMAOPHbDK4s6RcLvYslBp80kWt3JyVY6kg-sxvCMJ9fPgEsN-CI4Y5K2gE.t-Sqz4MO3MPAvrcSfZVWbAHaZ5zMVaU-Z1WmD637ibQ&dib_tag=se&keywords=fidget&qid=1724497173&sprefix=fidget%2Caps%2C138&sr=8-15&th=1";
+};
