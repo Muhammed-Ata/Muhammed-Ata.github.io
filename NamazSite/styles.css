@@ -24,6 +24,11 @@ h1 {
 
 #vakitler {
     margin-bottom: 20px;
+    text-align: left;
+}
+
+.vakit-item {
+    margin-bottom: 10px;
 }
 
 button {

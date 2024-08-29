@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
         vakitlerDiv.innerHTML = '';
         vakitler.forEach(vakit => {
             vakitlerDiv.innerHTML += `
-                <div>
-                    <strong>${vakit.Vakit}</strong>: ${vakit.Saat}
+                <div class="vakit-item">
+                    <strong>${vakit.Vakit}:</strong> ${vakit.Saat}
                 </div>
             `;
         });
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const diff = vakitTime - now;
                 const diffMinutes = Math.floor((diff / 1000 / 60) % 60);
                 const diffHours = Math.floor((diff / 1000 / 60 / 60) % 24);
-                return `${diffHours} saat, ${diffMinutes} dakika kaldı`;
+                return `${vakitler[i].Vakit} vaktine ${diffHours} saat, ${diffMinutes} dakika kaldı.`;
             }
         }
         return 'Bugün başka namaz vakti yok.';
