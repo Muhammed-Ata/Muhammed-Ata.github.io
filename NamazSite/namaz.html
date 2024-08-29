@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Namaz Vakitleri</title>
     <link rel="stylesheet" href="style.css">
+    <title>Video Gösterici</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Namaz Vakitleri</h1>
-        <div id="vakitler">
-            <!-- Namaz vakitleri burada gösterilecek -->
-        </div>
-        <button id="kalanSureButton">Bir Sonraki Namaza Kalan Süreyi Göster</button>
-        <div id="kalanSure">
-            <!-- Kalan süre burada gösterilecek -->
+    <!-- Buton -->
+    <button id="show-video-btn">Suçu Sen mi İşledin?</button>
+    
+    <!-- Video Kaplayıcı -->
+    <div id="video-overlay" class="hidden">
+        <div id="video-container">
+            <iframe id="youtube-video" src="https://www.youtube.com/embed/-v5b7GqJCo4" frameborder="0" allowfullscreen></iframe>
+            <button id="close-video-btn">Kapat</button>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
