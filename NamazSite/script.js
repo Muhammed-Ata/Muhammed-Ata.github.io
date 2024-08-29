@@ -1,3 +1,52 @@
-document.getElementById("redirectButton").onclick = function () {
-    window.location.href = "https://www.amazon.com.tr/Yeti%C5%9Fkinler-Oyuncaklar%C4%B1-Tabancas%C4%B1-Oyuncaklar-Anksiyete/dp/B0CLRS6W3C/ref=sr_1_15?__mk_tr_TR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=ONAA797O8DTE&dib=eyJ2IjoiMSJ9.PV-fvutoE__hwBU1j6cqsHVfOAIsTsOwqdo1k_jSXvJ0lFwxSZ5F6kLevntpl3ToMaNC9wLa2AgdmfxZ_LHNI0_jikad_0RTjtP4u8Da4lKfsvdRfR_o3qKilqx91VIpu0Dwm8-D_syeSMZ7Y1gctASk69xaHwE9Bjj47-piTAS9Ok6gAadCq5mJMHatAU5oIAL1N4mqL9zXQIXYFCebNLyvywmwdk8JXUSwAPx5KSNz6E9HYZMAOPHbDK4s6RcLvYslBp80kWt3JyVY6kg-sxvCMJ9fPgEsN-CI4Y5K2gE.t-Sqz4MO3MPAvrcSfZVWbAHaZ5zMVaU-Z1WmD637ibQ&dib_tag=se&keywords=fidget&qid=1724497173&sprefix=fidget%2Caps%2C138&sr=8-15&th=1";
-};
+document.addEventListener('DOMContentLoaded', () => {
+    const vakitlerDiv = document.getElementById('vakitler');
+    const kalanSureDiv = document.getElementById('kalanSure');
+    const kalanSureButton = document.getElementById('kalanSureButton');
+
+    // Namaz vakitlerini API'den çekme
+    fetch('https://ezanvakti.herokuapp.com/vakitler?ilce=9516')  // İstanbul kodu örnektir, değiştirilebilir
+        .then(response => response.json())
+        .then(data => {
+            displayVakitler(data);
+        })
+        .catch(error => console.error('Hata:', error));
+
+    // Namaz vakitlerini ekrana yazdırma
+    function displayVakitler(vakitler) {
+        vakitlerDiv.innerHTML = '';
+        vakitler.forEach(vakit => {
+            vakitlerDiv.innerHTML += `
+                <div>
+                    <strong>${vakit.Vakit}</strong>: ${vakit.Saat}
+                </div>
+            `;
+        });
+    }
+
+    // Butona tıklayınca bir sonraki namaza kalan süreyi hesaplama
+    kalanSureButton.addEventListener('click', () => {
+        fetch('https://ezanvakti.herokuapp.com/vakitler?ilce=9516')  // API'den tekrar veri çekme
+            .then(response => response.json())
+            .then(data => {
+                const kalanSure = calculateKalanSure(data);
+                kalanSureDiv.textContent = kalanSure;
+            })
+            .catch(error => console.error('Hata:', error));
+    });
+
+    // Bir sonraki namaza kalan süreyi hesaplama
+    function calculateKalanSure(vakitler) {
+        const now = new Date();
+        for (let i = 0; i < vakitler.length; i++) {
+            const [hour, minute] = vakitler[i].Saat.split(':');
+            const vakitTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hour, minute);
+            if (vakitTime > now) {
+                const diff = vakitTime - now;
+                const diffMinutes = Math.floor((diff / 1000 / 60) % 60);
+                const diffHours = Math.floor((diff / 1000 / 60 / 60) % 24);
+                return `${diffHours} saat, ${diffMinutes} dakika kaldı`;
+            }
+        }
+        return 'Bugün başka namaz vakti yok.';
+    }
+});
