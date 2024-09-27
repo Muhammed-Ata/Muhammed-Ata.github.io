@@ -7,9 +7,6 @@ function startPacman() {
     const canvas = document.getElementById('pacmanCanvas');
     const context = canvas.getContext('2d');
     
-    canvas.width = 400;
-    canvas.height = 400;
-
     let pacman = {
         x: 50,
         y: 50,
@@ -21,15 +18,15 @@ function startPacman() {
     function drawPacman() {
         context.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Pac-Man body
+        // Pac-Man gövdesi
         context.beginPath();
-        context.arc(pacman.x, pacman.y, pacman.radius, 0.2 * Math.PI, 1.8 * Math.PI);
+        context.arc(pacman.x, pacman.y, pacman.radius, 0.2 * Math.PI, 1.8 * Math.PI); // Pac-Man'in ağzı açık hali
         context.lineTo(pacman.x, pacman.y);
         context.fillStyle = '#FFEB3B';
         context.fill();
         context.closePath();
 
-        // Eye
+        // Pac-Man gözü
         context.beginPath();
         context.arc(pacman.x + 10, pacman.y - 10, 3, 0, 2 * Math.PI);
         context.fillStyle = 'black';
