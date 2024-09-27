@@ -1,58 +1,28 @@
-document.getElementById('playButton').addEventListener('click', function() {
-    document.getElementById('gameContainer').classList.remove('hidden');
-    startPacman();
+document.addEventListener('DOMContentLoaded', function() {
+    fetchNamazTimes();
+
+    // API'den namaz vakitlerini çek
+    function fetchNamazTimes() {
+        // Gerçek bir API kullanarak namaz vakitlerini çekebilirsin.
+        // Burada örnek bir JSON simülasyonu yapıyoruz.
+
+        const namazVakitleri = {
+            imsak: "05:00",
+            gunes: "06:20",
+            ogle: "12:30",
+            ikindi: "15:45",
+            aksam: "18:20",
+            yatsi: "19:40"
+        };
+
+        // Verileri HTML elementlerine yerleştir
+        document.getElementById('imsak').textContent = namazVakitleri.imsak;
+        document.getElementById('gunes').textContent = namazVakitleri.gunes;
+        document.getElementById('ogle').textContent = namazVakitleri.ogle;
+        document.getElementById('ikindi').textContent = namazVakitleri.ikindi;
+        document.getElementById('aksam').textContent = namazVakitleri.aksam;
+        document.getElementById('yatsi').textContent = namazVakitleri.yatsi;
+    }
+
+    // Verileri her gün güncellemek için zamanı ayarlayabilirsin (örn. günde bir defa API'den veri çekmek).
 });
-
-function startPacman() {
-    const canvas = document.getElementById('pacmanCanvas');
-    const context = canvas.getContext('2d');
-    
-    let pacman = {
-        x: 50,
-        y: 50,
-        radius: 20,
-        speed: 2,
-        direction: { x: 1, y: 0 }
-    };
-
-    function drawPacman() {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Pac-Man gövdesi
-        context.beginPath();
-        context.arc(pacman.x, pacman.y, pacman.radius, 0.2 * Math.PI, 1.8 * Math.PI); // Pac-Man'in ağzı açık hali
-        context.lineTo(pacman.x, pacman.y);
-        context.fillStyle = '#FFEB3B';
-        context.fill();
-        context.closePath();
-
-        // Pac-Man gözü
-        context.beginPath();
-        context.arc(pacman.x + 10, pacman.y - 10, 3, 0, 2 * Math.PI);
-        context.fillStyle = 'black';
-        context.fill();
-        context.closePath();
-    }
-
-    function updatePacman() {
-        pacman.x += pacman.speed * pacman.direction.x;
-        pacman.y += pacman.speed * pacman.direction.y;
-
-        // Duvarlardan sekme
-        if (pacman.x + pacman.radius > canvas.width || pacman.x - pacman.radius < 0) {
-            pacman.direction.x = -pacman.direction.x;
-        }
-
-        if (pacman.y + pacman.radius > canvas.height || pacman.y - pacman.radius < 0) {
-            pacman.direction.y = -pacman.direction.y;
-        }
-    }
-
-    function gameLoop() {
-        updatePacman();
-        drawPacman();
-        requestAnimationFrame(gameLoop);
-    }
-
-    gameLoop();
-}

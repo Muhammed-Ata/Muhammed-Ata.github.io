@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pac-Man Oyunu</title>
+    <title>İskenderun Namaz Vakitleri</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Pac-Man Oyunu</h1>
-    <button id="playButton">Pac-Man Oyna</button>
-    <div id="gameContainer" class="hidden">
-        <canvas id="pacmanCanvas" width="400" height="400"></canvas>
+    <div class="container">
+        <h1>İskenderun Namaz Vakitleri</h1>
+        <div id="times">
+            <p><strong>İmsak:</strong> <span id="imsak">Yükleniyor...</span></p>
+            <p><strong>Güneş:</strong> <span id="gunes">Yükleniyor...</span></p>
+            <p><strong>Öğle:</strong> <span id="ogle">Yükleniyor...</span></p>
+            <p><strong>İkindi:</strong> <span id="ikindi">Yükleniyor...</span></p>
+            <p><strong>Akşam:</strong> <span id="aksam">Yükleniyor...</span></p>
+            <p><strong>Yatsı:</strong> <span id="yatsi">Yükleniyor...</span></p>
+        </div>
     </div>
-    
-    <script src="pacman.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
