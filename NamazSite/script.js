@@ -1,13 +1,10 @@
-function fetchNamazTimes() {
-    fetch('https://api.diyanet.gov.tr/namazvakti/api/times?city=iskenderun')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('imsak').textContent = data.imsak;
-            document.getElementById('gunes').textContent = data.gunes;
-            document.getElementById('ogle').textContent = data.ogle;
-            document.getElementById('ikindi').textContent = data.ikindi;
-            document.getElementById('aksam').textContent = data.aksam;
-            document.getElementById('yatsi').textContent = data.yatsi;
-        })
-        .catch(error => console.error('API Hatası:', error));
-}
+document.getElementById("userInput").addEventListener("input", function() {
+    const input = this.value.toLowerCase();
+    const responseDiv = document.getElementById("response");
+    
+    if (input === "hello") {
+        responseDiv.textContent = "hello, how are you today";
+    } else {
+        responseDiv.textContent = "";
+    }
+});
