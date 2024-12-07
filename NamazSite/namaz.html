@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yazma Yardımı</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Keşif Haritası</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Yazma Yardımı</h1>
-        <input type="text" id="userInput" placeholder="Bir şey yazın...">
-        <div id="response"></div>
-    </div>
-    <script src="script.js"></script>
+    <div id="map"></div>
+    <script src="/static/js/script.js"></script>
 </body>
 </html>
